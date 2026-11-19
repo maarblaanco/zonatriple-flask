@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Zona Triple</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/stylesheets/layout.css">
+</head>
+
+<body>
+
+<header class="cabecera">
+  <div class="contenedor cabecera-interior">
+    <a class="marca" href="/">
+      <img class="logo" src="/images/logo.png" alt="Zona Triple">
+      <span class="brand-text">Zona Triple</span>
+    </a>
+
+    <nav class="menu">
+      <div class="menu-links">
+        <a class="menu-enlace" href="/">Inicio</a>
+        <a class="menu-enlace" href="/about">Sobre nosotros</a>
+
+        {% if session.get('user') %}
+          <a class="menu-enlace" href="/equipos">Equipos</a>
+
+          {% if session['user']['role'] == 'admin' %}
+            <a class="menu-enlace" href="/usuarios">Usuarios</a>
+          {% endif %}
+
+          <a class="menu-enlace destacado" href="/equipos/new">Crear equipo</a>
+        {% endif %}
+      </div>
+
+      <div class="menu-user">
+        {% if session.get('user') %}
+          <span class="menu-saludo">Hola, {{ session['user']['username'] }}</span>
+          <a class="menu-enlace destacado" href="/auth/logout">Logout</a>
+        {% else %}
+          <a class="menu-enlace destacado" href="/auth/login">Login</a>
+          <a class="menu-enlace" href="/auth/register">Registro</a>
+        {% endif %}
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="contenedor">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-wrap">
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="pie">
+  <p>© 2026 · Zona Triple · Mar Blanco</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="/stylesheets/equipos.css">
+
+<div class="equipos">
+
+<section class="seccion">
+  <h1 class="seccion-titulo">Crear equipo</h1>
+  <p class="texto">Introduce los datos principales del club para añadirlo al listado.</p>
+
+  <form class="formulario" action="/equipos" method="POST" enctype="multipart/form-data">
+
+    <label for="nombre">Nombre del equipo</label>
+    <input id="nombre" type="text" name="nombre" placeholder="Ej. Valencia Basket" required>
+
+    <label for="ciudad">Ciudad</label>
+    <input id="ciudad" type="text" name="ciudad" placeholder="Ej. Valencia" required>
+
+    <label for="fundacion">Año de fundación</label>
+    <input id="fundacion" type="number" name="fundacion" placeholder="Ej. 1986" min="1900" max="2026" required>
+
+    <label for="liga">Liga</label>
+    <select id="liga" name="liga" required>
+      <option value="">Selecciona una liga</option>
+      {% for liga in ligas %}
+        <option value="{{ liga }}">{{ liga }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="pabellon">Pabellón</label>
+    <input id="pabellon" type="text" name="pabellon" placeholder="Ej. Movistar Arena" required>
+
+    <label for="aforo">Capacidad del pabellón</label>
+    <input id="aforo" type="number" name="aforo" placeholder="Ej. 9000" required>
+
+    <label class="etiqueta-check">
+      <input id="cantera" type="checkbox" name="cantera">
+      Tiene cantera
+    </label>
+
+    <label for="file">Imagen del equipo</label>
+    <input id="file" type="file" name="file" accept="image/*" autocomplete="off">
+
+    <button class="boton boton-principal" type="submit">Crear equipo</button>
+    <a class="boton boton-secundario" href="/equipos">Volver a la lista</a>
+
+  </form>
+</section>
+
+</div>
+
+{% endblock %}

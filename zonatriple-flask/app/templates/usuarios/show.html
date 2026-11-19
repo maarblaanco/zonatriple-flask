@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/stylesheets/equipos.css">
+
+<div class="usuarios">
+
+<section class="cabecera-pagina">
+  <div>
+    <h1 class="seccion-titulo">Detalle de usuario</h1>
+    <p class="texto">Información del usuario seleccionado.</p>
+  </div>
+
+  <a class="boton boton-secundario" href="/usuarios">
+    Volver
+  </a>
+</section>
+
+<section class="ficha">
+
+  <ul class="ficha-lista">
+    <li><strong>Username:</strong> {{ usuario.username }}</li>
+    <li><strong>Email:</strong> {{ usuario.email }}</li>
+    <li><strong>Role:</strong> {{ usuario.role }}</li>
+  </ul>
+
+  <div class="acciones">
+    <a class="boton boton-principal" href="/usuarios/{{ usuario.id }}/edit">
+      Editar
+    </a>
+  </div>
+
+</section>
+
+</div>
+
+{% endblock %}

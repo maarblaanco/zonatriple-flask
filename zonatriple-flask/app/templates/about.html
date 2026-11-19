@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<section class="about-hero">
+  <div class="about-card">
+    <div class="decoracion"></div>
+    <p class="etiqueta">ZONA TRIPLE</p>
+    <h1 class="about-titulo">Sobre Zona Triple</h1>
+
+    <p class="texto">
+      Zona Triple es una web pensada para consultar equipos, ligas y algunos datos básicos del entorno basket de forma rápida y clara.
+    </p>
+
+    <p class="texto">
+      El objetivo es reunir información esencial de clubes y competiciones en una estructura sencilla, visual y organizada.
+    </p>
+  </div>
+
+  <div class="about-media" aria-hidden="true"></div>
+</section>
+
+<section class="seccion">
+  <div class="seccion-cabecera seccion-cabecera-apilada">
+    <h2 class="seccion-titulo">Detrás del juego</h2>
+    <p class="seccion-subtitulo">Entrenamiento, celebración y vida de pista.</p>
+  </div>
+
+  <div class="galeria-grid">
+    <img class="foto-grid"
+         src="/images/celebracion.jpg"
+         alt="Jugadores de la selección española celebrando en la pista con el público en las gradas">
+
+    <img class="foto-grid"
+         src="/images/entreno.jpg"
+         alt="Jugadores realizando ejercicios físicos con balones durante un entrenamiento en pista cubierta">
+
+    <img class="foto-grid"
+         src="/images/exterior.jpg"
+         alt="Cancha de baloncesto exterior con canasta y paisaje al fondo">
+
+    <img class="foto-grid"
+         src="/images/banquillo.jpg"
+         alt="Entrenador dando instrucciones a los jugadores en el banquillo durante un partido">
+  </div>
+</section>
+
+{% endblock %}

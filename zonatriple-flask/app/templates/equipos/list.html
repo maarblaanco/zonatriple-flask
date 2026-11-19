@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="/stylesheets/equipos.css">
+
+<div class="equipos">
+
+<section class="cabecera-pagina">
+  <div>
+    <h1 class="seccion-titulo">Equipos</h1>
+    <p class="texto">Listado por ligas. Pulsa en el nombre para ver la ficha del equipo.</p>
+  </div>
+
+  <a class="boton boton-principal" href="/equipos/new">Nuevo equipo</a>
+</section>
+
+<form action="/equipos" method="get">
+  <label>Nombre</label>
+  <input type="text" name="nombre" value="{{ filtros.nombre }}" placeholder="Ej. Madrid">
+
+  <label>Liga</label>
+  <select name="liga">
+    <option value="">Todas</option>
+    {% for l in ligas %}
+      <option value="{{ l }}" {% if filtros.liga == l %}selected{% endif %}>{{ l }}</option>
+    {% endfor %}
+  </select>
+
+  <button class="boton boton-principal" type="submit">Filtrar</button>
+  <a class="boton boton-secundario" href="/equipos">Limpiar</a>
+</form>
+
+<table class="tabla">
+  <thead>
+    <tr>
+      <th>Imagen</th>
+      <th>Equipo</th>
+      <th>Ciudad</th>
+      <th>Liga</th>
+      <th>Año de fundación</th>
+      <th>Cantera</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% if equipos|length == 0 %}
+      <tr>
+        <td colspan="7">No hay resultados con esos filtros.</td>
+      </tr>
+    {% else %}
+      {% for equipo in equipos %}
+        <tr>
+          <td>
+            {% if equipo.filename %}
+              <img class="escudo" src="/thumbnail/{{ equipo.filename }}" alt="Imagen de {{ equipo.nombre }}">
+            {% else %}
+              {% if equipo.nombre == "Real Madrid" %}
+                <img class="escudo" src="/images/escudos/real_madrid.png" alt="Escudo de {{ equipo.nombre }}">
+              {% elif equipo.nombre == "FC Barcelona" %}
+                <img class="escudo" src="/images/escudos/barcelona.png" alt="Escudo de {{ equipo.nombre }}">
+              {% elif equipo.nombre == "Leyma Coruña" %}
+                <img class="escudo" src="/images/escudos/coruna.png" alt="Escudo de {{ equipo.nombre }}">
+              {% else %}
+                —
+              {% endif %}
+            {% endif %}
+          </td>
+
+          <td>
+            <a class="enlace" href="/equipos/{{ equipo.id }}">{{ equipo.nombre }}</a>
+          </td>
+
+          <td>{{ equipo.ciudad }}</td>
+          <td>{{ equipo.liga }}</td>
+          <td>{{ equipo.fundacion }}</td>
+          <td>{% if equipo.cantera %}Sí{% else %}No{% endif %}</td>
+
+          <td class="celda-acciones">
+            <a class="boton-mini boton-mini-linea" href="/equipos/{{ equipo.id }}/edit">Editar</a>
+
+            <form action="/equipos/{{ equipo.id }}/delete" method="post" style="display:inline;">
+              <input type="hidden" name="_method" value="DELETE">
+              <button class="boton-mini boton-mini-rojo" type="submit">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+
+</div>
+
+{% endblock %}

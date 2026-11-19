@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="/stylesheets/equipos.css">
+
+<div class="usuarios">
+
+<section class="seccion">
+  <h1 class="seccion-titulo">Crear usuario</h1>
+  <p class="texto">Introduce los datos del usuario para registrarlo.</p>
+
+  <form class="formulario" action="/usuarios" method="POST">
+
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username" placeholder="Ej. mar.blanco" required>
+
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" placeholder="Ej. usuario@zonatriple.es" required>
+
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" placeholder="Ej. 1234" required>
+
+    <label for="role">Role</label>
+    <select id="role" name="role" required>
+      <option value="user" selected>user</option>
+      <option value="admin">admin</option>
+    </select>
+
+    <button class="boton boton-principal" type="submit">Crear usuario</button>
+
+    <a class="boton boton-secundario" href="/usuarios">Volver a la lista</a>
+
+  </form>
+</section>
+
+</div>
+
+{% endblock %}

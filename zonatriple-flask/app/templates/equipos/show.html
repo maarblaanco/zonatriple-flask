@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="/stylesheets/equipos.css">
+
+<div class="equipos">
+
+<section class="cabecera-pagina">
+  <div>
+    <h1 class="seccion-titulo">Detalle de equipo</h1>
+    <p class="texto">Información del equipo seleccionado.</p>
+  </div>
+
+  <a class="boton boton-secundario" href="/equipos">Volver</a>
+</section>
+
+<section class="ficha">
+  <div class="ficha-top">
+    {% if equipo.filename %}
+      <img class="escudo-grande"
+          src="/download/{{ equipo.filename }}"
+          alt="Imagen de {{ equipo.nombre }}">
+    {% endif %}
+
+    <div>
+      <h2 class="ficha-titulo">{{ equipo.nombre }}</h2>
+      <p class="texto">{{ equipo.liga }} · {{ equipo.ciudad }}</p>
+    </div>
+  </div>
+
+  <ul class="ficha-lista">
+    <li><strong>Nombre:</strong> {{ equipo.nombre }}</li>
+    <li><strong>Ciudad:</strong> {{ equipo.ciudad }}</li>
+    <li><strong>Liga:</strong> {{ equipo.liga }}</li>
+    <li><strong>Año de fundación:</strong> {{ equipo.fundacion }}</li>
+    <li><strong>Pabellón:</strong> {{ equipo.pabellon }}</li>
+    <li><strong>Aforo:</strong> {{ equipo.aforo }}</li>
+    <li><strong>Cantera:</strong> {% if equipo.cantera %}Sí{% else %}No{% endif %}</li>
+  </ul>
+
+  <div class="acciones">
+    <a class="boton boton-principal" href="/equipos/{{ equipo.id }}/edit">Editar</a>
+    <a class="boton boton-secundario" href="/equipos">Volver a lista</a>
+  </div>
+
+</section>
+
+</div>
+
+{% endblock %}

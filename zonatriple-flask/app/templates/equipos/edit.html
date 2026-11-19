@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="/stylesheets/equipos.css">
+
+<div class="equipos">
+
+<section class="seccion">
+  <h1 class="seccion-titulo">Editar equipo</h1>
+  <p class="texto">Modifica los datos del equipo.</p>
+
+  <form class="formulario" action="/equipos/{{ equipo.id }}/update" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_method" value="PUT">
+
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" name="nombre" value="{{ equipo.nombre }}" required>
+
+    <label for="ciudad">Ciudad</label>
+    <input id="ciudad" type="text" name="ciudad" value="{{ equipo.ciudad }}" required>
+
+    <label for="fundacion">Año de fundación</label>
+    <input id="fundacion" type="number" name="fundacion" value="{{ equipo.fundacion }}" min="1900" max="2026" required>
+
+    <label for="liga">Liga</label>
+    <select id="liga" name="liga" required>
+      {% for l in ligas %}
+        <option value="{{ l }}" {% if equipo.liga == l %}selected{% endif %}>{{ l }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="pabellon">Pabellón</label>
+    <input id="pabellon" type="text" name="pabellon" value="{{ equipo.pabellon }}" required>
+
+    <label for="aforo">Aforo</label>
+    <input id="aforo" type="number" name="aforo" value="{{ equipo.aforo }}">
+
+    <label class="etiqueta-check">
+      <input type="checkbox" name="cantera" {% if equipo.cantera %}checked{% endif %}>
+      Tiene cantera
+    </label>
+
+    <label>Imagen actual</label>
+    {% if equipo.filename %}
+      <div>
+        <img class="escudo" src="/thumbnail/{{ equipo.filename }}" alt="Imagen actual de {{ equipo.nombre }}">
+      </div>
+    {% else %}
+      <p class="texto">No hay imagen subida.</p>
+    {% endif %}
+
+    <label for="file">Cambiar imagen</label>
+    <input type="file" id="file" name="file" accept="image/*">
+
+    <button class="boton boton-principal" type="submit">
+      Guardar cambios
+    </button>
+  </form>
+
+  <div class="acciones">
+    <a class="boton boton-secundario" href="/equipos/{{ equipo.id }}">
+      Cancelar
+    </a>
+  </div>
+
+</section>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/stylesheets/home.css">
+
+<div class="home">
+
+<section class="seccion">
+  <h1 class="titulo-principal">Baloncesto en España</h1>
+  <p class="subtitulo-principal">
+    Una guía visual de equipos, ligas y pabellones para tener lo importante a mano.
+  </p>
+</section>
+
+<section class="portada">
+  <div class="portada-izq">
+    <div class="decoracion"></div>
+    <p class="etiqueta">ZONA TRIPLE</p>
+
+    <h2 class="portada-titulo">Descubre equipos y cultura basket</h2>
+
+    <p class="portada-texto">
+      Explora equipos por liga, consulta datos básicos y descubre el ambiente del baloncesto.
+    </p>
+
+    <div class="acciones">
+      <a class="boton boton-principal" href="/equipos">Ver equipos</a>
+      <a class="boton boton-secundario" href="/equipos/new">Añadir equipo</a>
+    </div>
+  </div>
+
+  <div class="portada-der"></div>
+</section>
+
+<section class="tarjetas">
+  <a class="tarjeta" href="/equipos#acb">
+    <div class="decoracion-tarjeta"></div>
+    <h3 class="tarjeta-titulo">ACB</h3>
+    <p class="tarjeta-texto">Máxima categoría del baloncesto español.</p>
+  </a>
+
+  <a class="tarjeta" href="/equipos#lf">
+    <div class="decoracion-tarjeta"></div>
+    <h3 class="tarjeta-titulo">Femenina</h3>
+    <p class="tarjeta-texto">Equipos referentes del basket femenino.</p>
+  </a>
+
+  <a class="tarjeta" href="/equipos#leb">
+    <div class="decoracion-tarjeta"></div>
+    <h3 class="tarjeta-titulo">LEB</h3>
+    <p class="tarjeta-texto">Formación y desarrollo de clubes.</p>
+  </a>
+</section>
+
+<section class="seccion" id="galeria">
+  <div class="seccion-cabecera">
+    <h2 class="seccion-titulo">Galería</h2>
+    <p class="seccion-subtitulo">Momentos y lugares que huelen a basket.</p>
+  </div>
+
+  <div class="galeria-flex">
+    <div class="foto-box">
+      <img class="foto" src="/images/balon.jpg" alt="Balón oficial de baloncesto">
+    </div>
+
+    <div class="foto-box">
+      <img class="foto" src="/images/cancha.jpg" alt="Pista cubierta de baloncesto">
+    </div>
+
+    <div class="foto-box">
+      <img class="foto" src="/images/canasta.jpg" alt="Canasta de baloncesto con balón">
+    </div>
+
+    <div class="foto-box">
+      <img class="foto" src="/images/partido.jpg" alt="Partido de baloncesto con público en las gradas">
+    </div>
+  </div>
+</section>
+
+</div>
+
+{% endblock %}

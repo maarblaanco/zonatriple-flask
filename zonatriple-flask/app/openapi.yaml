@@ -1,0 +1,270 @@
+openapi: 3.0.3
+info:
+  title: API ZonaTriple
+  description: API RESTful para gestionar equipos de baloncesto.
+  version: 1.0.0
+
+servers:
+  - url: http://127.0.0.1:5000/api/v1
+    description: Servidor local de desarrollo
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "5af18195-77f6-489d-a2eb-568379105163"
+        username:
+          type: string
+          example: "mar.blanco"
+        email:
+          type: string
+          example: "mar.blanco@zonatriple.es"
+        role:
+          type: string
+          example: "user"
+
+    Weather:
+      type: object
+      nullable: true
+      properties:
+        ciudad:
+          type: string
+          example: "Madrid"
+        temperatura:
+          type: number
+          example: 10.3
+        viento:
+          type: number
+          example: 5.1
+        codigo_tiempo:
+          type: integer
+          example: 3
+        instante:
+          type: string
+          example: "2026-03-20T19:45"
+
+    Equipo:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nombre:
+          type: string
+          example: "Real Madrid"
+        ciudad:
+          type: string
+          example: "Madrid"
+        fundacion:
+          type: integer
+          example: 1931
+        liga:
+          type: string
+          example: "ACB"
+        pabellon:
+          type: string
+          example: "Movistar Arena"
+        aforo:
+          type: integer
+          example: 17000
+        cantera:
+          type: boolean
+          example: true
+        filename:
+          type: string
+          nullable: true
+          example: null
+        user:
+          $ref: "#/components/schemas/User"
+        weather:
+          $ref: "#/components/schemas/Weather"
+
+    NewEquipo:
+      type: object
+      required:
+        - nombre
+        - user_id
+      properties:
+        nombre:
+          type: string
+          example: "Valencia Basket"
+        ciudad:
+          type: string
+          example: "Valencia"
+        fundacion:
+          type: integer
+          example: 1986
+        liga:
+          type: string
+          example: "ACB"
+        pabellon:
+          type: string
+          example: "La Fonteta"
+        aforo:
+          type: integer
+          example: 8500
+        cantera:
+          type: boolean
+          example: true
+        user_id:
+          type: string
+          example: "5af18195-77f6-489d-a2eb-568379105163"
+
+    EditEquipo:
+      type: object
+      properties:
+        nombre:
+          type: string
+          example: "Valencia Basket"
+        ciudad:
+          type: string
+          example: "Valencia"
+        fundacion:
+          type: integer
+          example: 1986
+        liga:
+          type: string
+          example: "ACB"
+        pabellon:
+          type: string
+          example: "La Fonteta"
+        aforo:
+          type: integer
+          example: 9000
+        cantera:
+          type: boolean
+          example: true
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Equipo con id 999 no encontrado"
+
+paths:
+  /equipos:
+    get:
+      summary: Obtener todos los equipos
+      tags:
+        - Equipos
+      responses:
+        "200":
+          description: Lista de equipos recuperada correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Equipo"
+
+    post:
+      summary: Crear un nuevo equipo
+      tags:
+        - Equipos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewEquipo"
+      responses:
+        "201":
+          description: Equipo creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Equipo"
+        "400":
+          description: Error de validación
+
+  /equipos/{id}:
+    get:
+      summary: Obtener un equipo por id
+      tags:
+        - Equipos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        "200":
+          description: Equipo encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Equipo"
+        "404":
+          description: Equipo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    put:
+      summary: Actualizar un equipo
+      tags:
+        - Equipos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditEquipo"
+      responses:
+        "200":
+          description: Equipo actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Equipo"
+        "400":
+          description: Error de validación
+        "404":
+          description: Equipo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    delete:
+      summary: Eliminar un equipo
+      tags:
+        - Equipos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        "200":
+          description: Equipo eliminado correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Equipo con id 1 eliminado correctamente"
+        "404":
+          description: Equipo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"

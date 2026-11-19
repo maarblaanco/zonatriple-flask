@@ -1,0 +1,179 @@
+/* Equipos */
+
+.cabecera-pagina{
+  margin-top:18px;
+  margin-bottom:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:14px;
+}
+
+.tabla{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 12px 28px rgba(15,23,42,.08);
+  margin-top:10px;
+}
+
+.tabla th, .tabla td{
+  padding:12px 10px;
+  border-bottom:1px solid rgba(15,23,42,.08);
+  text-align:left;
+  vertical-align:middle;
+}
+
+.tabla th{
+  font-size:13px;
+  color:#667085;
+  font-weight:900;
+  background:rgba(15,23,42,.03);
+}
+
+.tabla tr:last-child td{ border-bottom:none; }
+
+.celda-acciones{ white-space:nowrap; }
+
+.escudo{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+}
+
+.enlace{
+  color:#0f172a;
+  font-weight:900;
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,122,0,.35);
+}
+
+.enlace:hover{
+  border-bottom-color:rgba(255,122,0,.75);
+}
+
+.boton-mini{
+  display:inline-block;
+  text-decoration:none;
+  font-weight:800;
+  font-size:13px;
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid transparent;
+  margin-right:6px;
+}
+
+.boton-mini-linea{
+  background:#f7f8fb;
+  color:#0f172a;
+  border:1px solid rgba(15,23,42,.12);
+}
+
+.boton-mini-rojo{
+  background:#ef4444;
+  color:#fff;
+}
+
+.boton-mini:hover{ transform:translateY(-1px); }
+
+/* Ficha */
+.ficha{
+  background:#fff;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:22px;
+  box-shadow:0 12px 28px rgba(15,23,42,.08);
+  padding:18px;
+  margin-bottom:18px;
+}
+
+.ficha-top{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.escudo-grande{
+  width:64px;
+  height:64px;
+  object-fit:contain;
+  background:#fff;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:18px;
+  padding:10px;
+}
+
+.ficha-titulo{
+  margin:0;
+  font-size:22px;
+  font-weight:900;
+}
+
+.ficha-lista{
+  margin:14px 0 0;
+  padding-left:18px;
+}
+
+.ficha-lista li{ margin:8px 0; }
+
+/* Formulario */
+.formulario{
+  display:grid;
+  gap:12px;
+  max-width:560px;
+  background:#fff;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:22px;
+  box-shadow:0 12px 28px rgba(15,23,42,.08);
+  padding:18px;
+}
+
+.formulario label{
+  font-weight:800;
+  font-size:13px;
+}
+
+.formulario input,
+.formulario select{
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid rgba(15,23,42,.12);
+  background:#fff;
+  font-size:14px;
+}
+
+.formulario input:focus,
+.formulario select:focus{
+  outline:none;
+  border-color:rgba(255,122,0,.55);
+}
+
+.etiqueta-check{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  font-size:13px;
+  background:#f7f8fb;
+  border:1px solid rgba(15,23,42,.10);
+  border-radius:14px;
+  padding:10px 12px;
+}
+
+.etiqueta-check input{
+  width:16px;
+  height:16px;
+  margin:0;
+}
+
+/* Responsive */
+@media (max-width: 768px){
+
+  .tabla{
+    display:block;
+    overflow-x:auto;
+  }
+}
