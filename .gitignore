@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+
+# Configuración local y secretos
+.env
+
+# Logs
+*.log
+
+# Archivos subidos por los usuarios al probar la app
+app/assets/images/*
+app/assets/thumbnails/*
+
+# SO / editores
+.DS_Store
+.vscode/
+.idea/
